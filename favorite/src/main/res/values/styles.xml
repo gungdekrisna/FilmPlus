@@ -1,0 +1,5 @@
+<resources>
+    <style name="DarkBackground">
+        <item name="android:background">@color/dark_700</item>
+    </style>
+</resources>
