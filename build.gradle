@@ -43,4 +43,10 @@ ext {
     junit = "4.+"
     test_junit = "1.1.2"
     test_espresso = "3.3.0"
+
+    // Testing
+    androidCoreTestVersion = '2.1.0'
+    mockitoKotlinVersion = '2.2.0'
+    mockitoVersion = '3.9.0'
+    mockWebServer = '4.7.2'
 }

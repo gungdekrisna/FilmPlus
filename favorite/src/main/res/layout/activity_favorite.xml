@@ -28,6 +28,7 @@
         android:src="@drawable/ic_baseline_movie_24"
         app:layout_constraintStart_toStartOf="parent"
         android:visibility="gone"
+        android:contentDescription="@string/empty_content_description"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView

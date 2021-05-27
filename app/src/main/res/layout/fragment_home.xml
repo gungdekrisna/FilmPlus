@@ -6,15 +6,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".home.HomeFragment">
 
+    <LinearLayout
+        android:id="@+id/searchLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:textColorHint="@color/grey"
+            android:padding="12dp"
+            android:textColor="@color/white"
+            android:hint="@string/search_hint"
+            android:background="@color/dark_500"/>
+
+        <ImageView
+            android:id="@+id/btn_search"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:padding="11dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_search"
+            android:background="@drawable/button" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_film"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchLayout"
         tools:listitem="@layout/item_movie">
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -27,6 +57,7 @@
         android:src="@drawable/ic_baseline_movie_24"
         app:layout_constraintStart_toStartOf="parent"
         android:visibility="gone"
+        android:contentDescription="@string/empty_content_description"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
@@ -38,7 +69,7 @@
         android:textSize="20sp"
         android:gravity="center"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

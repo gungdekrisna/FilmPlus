@@ -28,6 +28,12 @@ jobs:
           path: app/build/reports
           destination: reports
       - run:
+          name: Run Debug Coverage
+          command: ./gradlew createMockDebugCoverageReport
+      - store_artifacts:
+          path: app/build/reports/coverage/
+          destination: reports
+      - run:
           name: Run Tests
           command: ./gradlew lint test
       - store_test_results:

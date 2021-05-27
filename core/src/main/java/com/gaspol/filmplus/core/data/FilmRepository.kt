@@ -14,8 +14,8 @@ class FilmRepository(
     private val localDataSource: com.gaspol.filmplus.core.data.source.local.LocalDataSource,
     private val appExecutors: AppExecutors
 ) : IFilmRepository {
-    override fun getAllMovies(): Flow<com.gaspol.filmplus.core.data.Resource<List<Movie>>> {
-        return object : com.gaspol.filmplus.core.data.NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
+    override fun getAllMovies(): Flow<Resource<List<Movie>>> {
+        return object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
             override fun loadFromDB(): Flow<List<Movie>> {
                 return localDataSource.getAllMovies().map {
                     DataMapper.mapEntitiesToDomain(it)
@@ -32,6 +32,28 @@ class FilmRepository(
                 val movieList = DataMapper.mapResponsesToEntities(data)
                 appExecutors.diskIO().execute { localDataSource.insertMovie(movieList) }
             }
+        }.asFlow()
+    }
+
+    override fun getMoviesSearch(query: String): Flow<Resource<List<Movie>>> {
+        return object : NetworkBoundResource<List<Movie>, List<MovieResponse>>() {
+            override fun loadFromDB(): Flow<List<Movie>> {
+                return localDataSource.getAllMovies().map {
+                    DataMapper.mapEntitiesToDomain(it)
+                }
+            }
+
+            override fun shouldFetch(data: List<Movie>?): Boolean =
+                true
+
+            override suspend fun createCall(): Flow<ApiResponse<List<MovieResponse>>> =
+                remoteDataSource.getMoviesSearch(query)
+
+            override suspend fun saveCallResult(data: List<MovieResponse>) {
+                val movieList = DataMapper.mapResponsesToEntities(data)
+                appExecutors.diskIO().execute { localDataSource.insertMovie(movieList) }
+            }
+
         }.asFlow()
     }
 

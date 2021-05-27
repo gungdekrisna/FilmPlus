@@ -21,4 +21,7 @@
     <string name="release_title">Release Date</string>
     <string name="sample_release">00-00-00</string>
     <string name="title_favorite">Favorite</string>
+    <string name="empty_content_description">Empty film</string>
+
+    <string name="search_hint">Movie name here</string>
 </resources>

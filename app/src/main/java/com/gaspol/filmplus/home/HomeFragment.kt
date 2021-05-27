@@ -43,6 +43,27 @@ class HomeFragment : Fragment() {
                 startActivity(intent)
             }
 
+            binding.btnSearch.setOnClickListener {
+                val query = binding.etSearch.text.toString().trim()
+                homeViewModel.movieSearch(query).observe(viewLifecycleOwner, { movies ->
+                    if (movies != null) {
+                        when (movies) {
+                            is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
+                            is Resource.Success -> {
+                                binding.progressBar.visibility = View.GONE
+                                val moviePresentation = DataMapper.mapDomainToPresentation(movies.data!!)
+                                movieAdapter.setMovies(moviePresentation)
+                            }
+                            is Resource.Error -> {
+                                binding.progressBar.visibility = View.GONE
+                                binding.imgEmptyIconFilm.visibility = View.VISIBLE
+                                binding.tvEmptyMovie.visibility = View.VISIBLE
+                            }
+                        }
+                    }
+                })
+            }
+
             homeViewModel.movies.observe(viewLifecycleOwner, { movies ->
                 if (movies != null) {
                     when (movies) {

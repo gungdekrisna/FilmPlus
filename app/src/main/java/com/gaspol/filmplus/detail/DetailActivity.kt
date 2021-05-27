@@ -36,11 +36,20 @@ class DetailActivity : AppCompatActivity() {
             binding.content.tvUserScore.text = detailMovie.voteAverage.toString()
             binding.content.tvOverview.text = detailMovie.overview
             binding.content.tvReleaseDate.text = detailMovie.releaseDate
-            Glide.with(this@DetailActivity)
-                .load("https://image.tmdb.org/t/p/original${detailMovie.backdropPath}")
-                .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
-                .error(R.drawable.ic_error_image)
-                .into(binding.ivPoster)
+
+            if (detailMovie.backdropPath == null){
+                Glide.with(this@DetailActivity)
+                    .load("https://image.tmdb.org/t/p/original${detailMovie.posterPath}")
+                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
+                    .error(R.drawable.ic_error_image)
+                    .into(binding.ivPoster)
+            } else {
+                Glide.with(this@DetailActivity)
+                    .load("https://image.tmdb.org/t/p/original${detailMovie.backdropPath}")
+                    .apply(RequestOptions.placeholderOf(R.drawable.ic_loading))
+                    .error(R.drawable.ic_error_image)
+                    .into(binding.ivPoster)
+            }
 
             var favoriteState = detailMovie.favorite
             setFavoriteState(favoriteState)

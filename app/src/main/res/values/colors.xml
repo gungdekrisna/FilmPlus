@@ -11,6 +11,7 @@
     <color name="blue">#01b4e4</color>
     <color name="seablue">#7acaac</color>
 
+    <color name="grey">#656565</color>
     <color name="dark_700">#121212</color>
     <color name="dark_500">#1d1d1d</color>
 </resources>
