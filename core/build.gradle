@@ -22,9 +22,6 @@ android {
 
         buildConfigField("String", 'API_KEY', '"e41d98ffde766d19c7dd9bdf4c56d4cd"')
     }
-    lintOptions {
-        abortOnError false
-    }
 
     buildTypes {
         release {
