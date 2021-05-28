@@ -3,6 +3,8 @@
     package="com.gaspol.filmplus">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <permission android:name="signatureBasedPermission"
+        android:protectionLevel="signature" />
 
     <application
         android:name=".MyApplication"
