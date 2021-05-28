@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
                             is Resource.Success -> {
                                 binding.progressBar.visibility = View.GONE
                                 val moviePresentation = DataMapper.mapDomainToPresentation(movies.data!!)
-                                movieAdapter.setMovies(moviePresentation)
+                                movieAdapter.setMovies(moviePresentation.asReversed())
                             }
                             is Resource.Error -> {
                                 binding.progressBar.visibility = View.GONE
@@ -71,7 +71,7 @@ class HomeFragment : Fragment() {
                         is Resource.Success -> {
                             binding.progressBar.visibility = View.GONE
                             val moviePresentation = DataMapper.mapDomainToPresentation(movies.data!!)
-                            movieAdapter.setMovies(moviePresentation)
+                            movieAdapter.setMovies(moviePresentation.asReversed())
                         }
                         is Resource.Error -> {
                             binding.progressBar.visibility = View.GONE

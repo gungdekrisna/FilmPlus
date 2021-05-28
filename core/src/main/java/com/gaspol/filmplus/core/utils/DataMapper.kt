@@ -26,6 +26,7 @@ object DataMapper {
     fun mapEntitiesToDomain(input: List<MovieEntity>): List<Movie> =
         input.map {
             Movie(
+                autoId = it.autoId,
                 id = it.id,
                 title = it.title,
                 posterPath = it.posterPath,
@@ -39,6 +40,7 @@ object DataMapper {
 
     fun mapDomainToEntity(input: Movie) =
         MovieEntity(
+            autoId = input.autoId,
             id = input.id,
             title = input.title,
             posterPath = input.posterPath,

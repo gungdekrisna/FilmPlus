@@ -7,6 +7,7 @@ object DataMapper {
     fun mapDomainToPresentation(input: List<Movie>): List<MoviePresentation> =
         input.map {
             MoviePresentation(
+                autoId = it.autoId,
                 id = it.id,
                 title = it.title,
                 posterPath = it.posterPath,
@@ -20,6 +21,7 @@ object DataMapper {
 
     fun mapPresentationToDomain(input: MoviePresentation) =
         Movie(
+            autoId = input.autoId,
             id = input.id,
             title = input.title,
             posterPath = input.posterPath,

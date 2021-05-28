@@ -22,7 +22,9 @@
             android:padding="12dp"
             android:textColor="@color/white"
             android:hint="@string/search_hint"
-            android:background="@color/dark_500"/>
+            android:background="@color/dark_500"
+            android:autofillHints=""
+            android:inputType="text" />
 
         <ImageView
             android:id="@+id/btn_search"
@@ -32,7 +34,8 @@
             android:padding="11dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_search"
-            android:background="@drawable/button" />
+            android:background="@drawable/button"
+            android:contentDescription="@string/search_button" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
